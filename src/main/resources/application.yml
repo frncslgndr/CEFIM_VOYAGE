@@ -1,0 +1,40 @@
+spring:
+#Le paramétrage de la database
+  datasource:
+    url: jdbc:mariadb://localhost:3307/cefim_voyage?createDatabaseIfNotExist=true
+    username: root
+    password: root
+    driver-class-name: org.mariadb.jdbc.Driver
+#Le paramétrage de l'ORM
+  jpa:
+    show-sql: false
+    hibernate:
+      ddl-auto: create-drop
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+#Le paramétrage du serveur mail
+  mail:
+    host: localhost
+    port: 1025
+
+
+#Le paramétrage pour swagger
+springdoc:
+  swagger-ui:
+    #pour pouvoir ouvrir swagger avec juste "/api"
+    path: "/"
+    tagsSorter: alpha
+    operationsSorter: alpha
+    docExpansion: none
+  api-docs:
+    path: /api-docs
+
+
+#Le port de l'API
+server:
+  port: 8080
+  servlet:
+    #toutes les routes de l'api commencerons par /api
+    context-path: /api
+  #pour exposer l'API sur un serveur
+  forward-headers-strategy: framework
