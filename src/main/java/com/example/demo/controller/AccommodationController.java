@@ -3,6 +3,7 @@ package com.example.demo.controller;
 
 import com.example.demo.controller.advice.CrudControllerAdviceInterface;
 import com.example.demo.entity.Accommodation;
+import com.example.demo.exception.AccommodationException;
 import com.example.demo.service.AccommodationService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -32,8 +33,8 @@ public class AccommodationController implements CrudControllerAdviceInterface<Ac
     }
 
     @Override
-    public Accommodation read(int id) throws Exception {
-        return null;
+    public Accommodation read(int id) throws AccommodationException {
+        return accommodationService.read(id);
     }
 
     @Override

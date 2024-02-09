@@ -2,6 +2,7 @@ package com.example.demo.service;
 
 
 import com.example.demo.entity.Accommodation;
+import com.example.demo.exception.AccommodationException;
 import com.example.demo.repository.AccommodationRepository;
 import com.example.demo.service.interfaces.CrudServiceInterface;
 import lombok.AllArgsConstructor;
@@ -15,7 +16,6 @@ public class AccommodationService implements CrudServiceInterface<Accommodation>
     private AccommodationRepository accommodationRepository;
     @Override
     public void create(Accommodation accommodation) {
-       //TODO Repository -> BDD -> Repository -> Service -> Controller
         accommodationRepository.save(accommodation);
     }
 
@@ -26,8 +26,11 @@ public class AccommodationService implements CrudServiceInterface<Accommodation>
     }
 
     @Override
-    public Accommodation read(int id) throws Exception {
-        return null;
+    public Accommodation read(int id) throws AccommodationException {
+        return accommodationRepository.findById(id)
+                .orElseThrow(
+                        () -> new AccommodationException("Accommodation not found")
+        );
     }
 
     @Override
