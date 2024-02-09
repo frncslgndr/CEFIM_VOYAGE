@@ -16,7 +16,7 @@ public interface CrudControllerAdviceInterface<T> {
     @ResponseStatus(value = CREATED) //reverra, apres la cration le statut HTTP 201
     @PostMapping(consumes = APPLICATION_JSON_VALUE) //précise le format de ce qui sera consommé/envoyé
     //méthode qui créé un objet de type T
-    void create (T object);
+    void create (@RequestBody T object);
 
     @ResponseStatus(value = OK) //Réponse ok pour poursuivre...
     @GetMapping //Parce qu'on veut un GET pour avoir la liste
