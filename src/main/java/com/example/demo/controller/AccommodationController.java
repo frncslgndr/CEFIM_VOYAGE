@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 
 import com.example.demo.controller.advice.CrudControllerAdviceInterface;
+import com.example.demo.dto.AccommodationDTO;
 import com.example.demo.entity.Accommodation;
 import com.example.demo.exception.AccommodationException;
 import com.example.demo.service.AccommodationService;
@@ -10,11 +11,11 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RequestMapping(path= "accommodation")     // nom de la route dans l'API
+@RequestMapping(path= "accommodations")     // nom de la route dans l'API
 @RestController
 //@AllArgsConstructor                           // utilisation de lombok pour construire le constructeur
 
-public class AccommodationController implements CrudControllerAdviceInterface<Accommodation> {
+public class AccommodationController implements CrudControllerAdviceInterface<AccommodationDTO> {
     private AccommodationService accommodationService;
 
     public AccommodationController(AccommodationService accommodationService) {
@@ -22,28 +23,28 @@ public class AccommodationController implements CrudControllerAdviceInterface<Ac
     }
 
     @Override
-    public void create( Accommodation accommodation) {
-        accommodationService.create(accommodation);
+    public AccommodationDTO create( AccommodationDTO accommodation) {
+       return accommodationService.create(accommodation);
     }
 
     @Override
-    public List<Accommodation> reads() {
+    public List<AccommodationDTO> reads() {
 
         return accommodationService.list();
     }
 
     @Override
-    public Accommodation read(int id) throws AccommodationException {
+    public AccommodationDTO read(int id) throws AccommodationException {
         return accommodationService.read(id);
     }
 
     @Override
-    public void update(int id, Accommodation object) throws Exception {
-
+    public AccommodationDTO update(int id, AccommodationDTO accommodationDTO) throws AccommodationException {
+        return accommodationService.update(id, accommodationDTO);
     }
 
     @Override
-    public void delete(int id) throws Exception {
-
+    public void delete(int id) throws AccommodationException {
+        accommodationService.delete(id);
     }
 }

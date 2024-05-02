@@ -1,9 +1,11 @@
 package com.example.demo.exception;
 
-public class AccommodationException extends Exception{
+import org.springframework.http.HttpStatus;
 
-    public AccommodationException(String message) {
-        super(message);
+public class AccommodationException extends GlobalException{
+
+    public AccommodationException(String message, HttpStatus httpStatus) {
+        super(message, httpStatus);
     }
 
 }

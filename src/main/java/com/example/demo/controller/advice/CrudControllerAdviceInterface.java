@@ -16,7 +16,7 @@ public interface CrudControllerAdviceInterface<T> {
     @ResponseStatus(value = CREATED) //reverra, apres la cration le statut HTTP 201
     @PostMapping(consumes = APPLICATION_JSON_VALUE) //précise le format de ce qui sera consommé/envoyé
     //méthode qui créé un objet de type T
-    void create (@RequestBody T object);
+    T create (@RequestBody T object);
 
     @ResponseStatus(value = OK) //Réponse ok pour poursuivre...
     @GetMapping //Parce qu'on veut un GET pour avoir la liste
@@ -28,7 +28,7 @@ public interface CrudControllerAdviceInterface<T> {
 
     @ResponseStatus(ACCEPTED) //Réponse "acceptée" en cas de mise à jour
     @PutMapping(path = "{id}", consumes = APPLICATION_JSON_VALUE) //On va faire un PUT, via la varible id, la donnée d'entrée est en JSON
-    void update(@PathVariable int id, @RequestBody T object) throws Exception; //REQUEST BODY :: le constenu de la réponse sera un objet de type T
+    T update(@PathVariable int id, @RequestBody T object) throws Exception; //REQUEST BODY :: le constenu de la réponse sera un objet de type T
 
     @ResponseStatus(NO_CONTENT) //Réponse "OK, rien"
     @DeleteMapping(path = "{id}") //On va faire une DELETE
